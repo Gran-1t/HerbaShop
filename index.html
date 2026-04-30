@@ -4,18 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Herboristería Fina | Dénia</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a2e1a; /* Глубокий зеленый */
-            --accent: #c5a059;  /* Спокойное золото */
-            --bg: #f4f1ea;      /* Теплый фон */
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --text: #2d2d2d;
+            --glass: rgba(255, 255, 255, 0.45); /* Прозрачность стекла */
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --primary: #2d3e2d; /* Темно-зеленый для текста */
+            --accent: #8b9d83;  /* Цвет оливы */
         }
 
         * { box-sizing: border-box; }
@@ -23,248 +18,189 @@
         body {
             margin: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            /* Современный паттерн: мелкие точки на фоне */
-            background-image: radial-gradient(var(--accent) 0.5px, transparent 0.5px);
-            background-size: 24px 24px;
-            background-attachment: fixed;
-            font-size: 1.1rem;
+            color: var(--primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            
+            /* Фон с картинкой и оверлеем для дымки */
+            background: 
+                linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), 
+                url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 40px;
+            width: 100%;
         }
 
-        /* Header */
+        /* Шапка */
         header {
-            padding: 60px 0 40px;
+            padding: 80px 0 40px;
             text-align: center;
         }
 
-        .logo-box {
-            display: inline-block;
-            border: 3px solid var(--primary);
-            padding: 20px 40px;
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            box-shadow: 10px 10px 0px var(--accent);
-        }
-
-        .brand {
+        .brand-name {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--primary);
             margin: 0;
-            letter-spacing: 1px;
         }
 
         .tagline {
-            letter-spacing: 5px;
-            font-size: 0.9rem;
-            color: var(--accent);
-            font-weight: 600;
-            margin-top: 5px;
+            font-size: 1rem;
+            letter-spacing: 8px;
+            opacity: 0.7;
+            margin-top: 15px;
         }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 60px 0;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            line-height: 1.1;
-            color: var(--primary);
-            margin-bottom: 25px;
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            color: var(--primary);
-            opacity: 0.8;
-            line-height: 1.6;
-        }
-
-        /* Catalog - Modern Cards */
-        .catalog {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin: 40px 0 80px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 50px;
-            border-radius: 0;
-            border: 1px solid rgba(26, 46, 26, 0.1);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--primary);
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .card h2::after {
-            content: "";
+        /* Основной контент */
+        main {
             flex: 1;
-            height: 1px;
-            background: var(--accent);
+            padding-bottom: 100px;
         }
 
-        .card ul {
+        .hero-text {
+            text-align: center;
+            max-width: 700px;
+            margin: 60px auto 100px;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Сетку делаем очень просторную */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+        }
+
+        /* Эффект матового стекла */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px); /* Тот самый размытый фон */
+            -webkit-backdrop-filter: blur(15px);
+            padding: 60px;
+            border: 1px solid var(--glass-border);
+            border-radius: 4px; /* Почти прямые углы для строгости */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: transform 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.55);
+        }
+
+        .glass-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-top: 0;
+            font-style: italic;
+        }
+
+        .glass-card ul {
             list-style: none;
             padding: 0;
-            margin: 30px 0 0;
+            margin-top: 40px;
         }
 
-        .card li {
+        .glass-card li {
             font-size: 1.2rem;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 20px;
             display: flex;
-            justify-content: space-between;
+            align-items: center;
+            opacity: 0.9;
         }
 
-        .card li::before {
-            content: "🌿";
-            margin-right: 10px;
+        .glass-card li::before {
+            content: "";
+            width: 30px;
+            height: 1px;
+            background: var(--accent);
+            margin-right: 15px;
+        }
+
+        /* Футер */
+        .footer-info {
+            padding: 100px 0;
+            text-align: center;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .visit-btn {
+            display: inline-block;
+            border: 1px solid var(--primary);
+            padding: 18px 45px;
+            text-decoration: none;
+            color: var(--primary);
             font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            margin-top: 40px;
         }
 
-        /* Footer & Info */
-        .info-panel {
+        .visit-btn:hover {
             background: var(--primary);
             color: white;
-            padding: 80px 0;
-            margin-top: 100px;
-            text-align: center;
-            border-radius: 50px 50px 0 0;
-        }
-
-        .info-panel h2 {
-            color: var(--accent);
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-        }
-
-        .grid-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .info-item h4 {
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        .wa-button {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--primary);
-            padding: 20px 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.2rem;
-            border-radius: 100px;
-            transition: all 0.3s ease;
-        }
-
-        .wa-button:hover {
-            background: white;
-            transform: scale(1.05);
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .card { padding: 30px; }
-            .logo-box { padding: 15px 25px; }
+            .container { padding: 0 20px; }
+            .glass-card { padding: 40px 30px; }
+            header { padding: 40px 0; }
         }
     </style>
 </head>
 <body>
 
     <header class="container">
-        <div class="logo-box">
-            <h1 class="brand">Herboristería Fina</h1>
-            <div class="tagline">A GRANEL · DÉNIA</div>
-        </div>
+        <h1 class="brand-name">Herboristería Fina</h1>
+        <div class="tagline">A GRANEL · DÉNIA</div>
     </header>
 
-    <div class="container">
-        <section class="hero">
-            <h1>Bienestar natural directo a tu hogar.</h1>
-            <p>Especialistas en plantas medicinales, tés del mundo y especias de alta calidad. Sin intermediarios, sin plástico.</p>
-        </section>
+    <main class="container">
+        <div class="hero-text">
+            Siente el aroma de la naturaleza pura. Especialistas en granel, bienestar y productos de la tierra en el corazón de Dénia.
+        </div>
 
-        <main class="catalog">
-            <div class="card">
+        <div class="catalog-grid">
+            <div class="glass-card">
                 <h2>Cuerpo</h2>
                 <ul>
-                    <li>Plantas a granel</li>
-                    <li>Aceites esenciales</li>
-                    <li>Cosmética sólida</li>
-                    <li>Higiene natural</li>
+                    <li>Especias seleccionadas</li>
+                    <li>Plantas medicinales</li>
+                    <li>Tés de origen</li>
+                    <li>Miel de la Marina Alta</li>
                 </ul>
             </div>
-            <div class="card">
+
+            <div class="glass-card">
                 <h2>Alma</h2>
                 <ul>
-                    <li>Tés e Infusiones</li>
-                    <li>Inciensos puros</li>
-                    <li>Miel de Dénia</li>
-                    <li>Velas artesanas</li>
+                    <li>Aceites esenciales</li>
+                    <li>Inciensos naturales</li>
+                    <li>Cosmética artesana</li>
+                    <li>Jabones vegetales</li>
                 </ul>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
-    <section class="info-panel">
+    <section class="footer-info">
         <div class="container">
-            <h2>Visítanos o haz tu pedido</h2>
+            <h3>Visítanos</h3>
+            <p>Carrer de Vicent Andrés Estellés, Dénia, Alicante</p>
+            <p><strong>L-V:</strong> 10-14h y 17-20h | <strong>S:</strong> 10-14h</p>
             
-            <div class="grid-info">
-                <div class="info-item">
-                    <h4>Ubicación</h4>
-                    <p>Carrer de Vicent Andrés Estellés, Dénia</p>
-                </div>
-                <div class="info-item">
-                    <h4>Horario</h4>
-                    <p>Lunes a Viernes: 10:00 - 20:00<br>Sábados: 10:00 - 14:00</p>
-                </div>
-            </div>
-
-            <a href="https://wa.me/34000000000" class="wa-button">
-                Hablar por WhatsApp
-            </a>
-
-            <p style="margin-top: 60px; opacity: 0.5; font-size: 0.8rem;">
-                © 2026 HERBORISTERÍA FINA A GRANEL - GRAN-1T
-            </p>
+            <a href="https://wa.me/34000000000" class="visit-btn">Pedidos WhatsApp</a>
         </div>
     </section>
 
