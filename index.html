@@ -3,213 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herboristería Fina a Granel | Dénia</title>
+    <title>Herboristería Fina | Dénia</title>
     
-    <!-- Мета-теги для соцсетей -->
-    <meta property="og:title" content="Herboristería Fina a Granel - Dénia">
-    <meta property="og:description" content="Hierbas, especias y productos eco en el corazón de Dénia. Calidad natural a granel.">
-    <meta name="description" content="Venta de hierbas medicinales, especias del mundo y cosmética natural a granel en Dénia.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-    
     <style>
         :root {
-            --bg: #fefcf9;
-            --text: #333333;
-            --olive: #4a5d45;
-            --clay: #a67c52;
-            --light-grey: #f2efeb;
+            --primary: #1a2e1a; /* Глубокий зеленый */
+            --accent: #c5a059;  /* Спокойное золото */
+            --bg: #f4f1ea;      /* Теплый фон */
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --text: #2d2d2d;
         }
 
         * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
 
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.7;
+            /* Современный паттерн: мелкие точки на фоне */
+            background-image: radial-gradient(var(--accent) 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            background-attachment: fixed;
+            font-size: 1.1rem;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 25px;
+            padding: 0 20px;
         }
 
         /* Header */
         header {
-            padding: 50px 0;
+            padding: 60px 0 40px;
             text-align: center;
+        }
+
+        .logo-box {
+            display: inline-block;
+            border: 3px solid var(--primary);
+            padding: 20px 40px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 10px 10px 0px var(--accent);
         }
 
         .brand {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            letter-spacing: 2px;
+            font-size: 2.5rem;
             text-transform: uppercase;
-            color: var(--olive);
-            text-decoration: none;
-            display: block;
+            color: var(--primary);
+            margin: 0;
+            letter-spacing: 1px;
         }
 
         .tagline {
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            color: var(--clay);
-            margin-top: 10px;
+            letter-spacing: 5px;
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 5px;
         }
 
-        /* Hero */
+        /* Hero Section */
         .hero {
-            padding: 60px 0 100px;
             text-align: center;
-            max-width: 700px;
+            padding: 60px 0;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        h1 {
+        .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 400;
-            margin: 0 0 30px;
-            color: var(--olive);
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            color: var(--primary);
+            margin-bottom: 25px;
         }
 
-        /* Catalog Section */
-        .catalog-grid {
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--primary);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Catalog - Modern Cards */
+        .catalog {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 40px 0 80px;
         }
 
-        .cat-box {
-            border: 1px solid #e0ddd8;
-            padding: 40px;
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 0;
+            border: 1px solid rgba(26, 46, 26, 0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0 0;
+        }
+
+        .card li {
+            font-size: 1.2rem;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card li::before {
+            content: "🌿";
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        /* Footer & Info */
+        .info-panel {
+            background: var(--primary);
+            color: white;
+            padding: 80px 0;
+            margin-top: 100px;
+            text-align: center;
+            border-radius: 50px 50px 0 0;
+        }
+
+        .info-panel h2 {
+            color: var(--accent);
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .grid-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .info-item h4 {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .wa-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 20px 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-radius: 100px;
             transition: all 0.3s ease;
         }
 
-        .cat-box:hover {
-            border-color: var(--olive);
-            background: #fff;
+        .wa-button:hover {
+            background: white;
+            transform: scale(1.05);
         }
 
-        .cat-box h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin-top: 0;
-            color: var(--olive);
-        }
-
-        .cat-box ul {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0 0;
-        }
-
-        .cat-box li {
-            padding: 8px 0;
-            border-bottom: 1px dashed #eee;
-            font-size: 0.95rem;
-        }
-
-        /* Contact Area */
-        .info-section {
-            background-color: var(--light-grey);
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .map-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--clay);
-            text-decoration: none;
-            font-weight: bold;
-            border-bottom: 1px solid var(--clay);
-        }
-
-        .wa-btn {
-            display: inline-block;
-            background-color: var(--olive);
-            color: white;
-            padding: 15px 35px;
-            text-decoration: none;
-            border-radius: 2px;
-            margin-top: 40px;
-            transition: opacity 0.3s;
-        }
-
-        .wa-btn:hover { opacity: 0.9; }
-
-        footer {
-            padding: 40px;
-            text-align: center;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #999;
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .card { padding: 30px; }
+            .logo-box { padding: 15px 25px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="#" class="brand">Herboristería Fina</a>
-        <div class="tagline">A GRANEL · DÉNIA</div>
+    <header class="container">
+        <div class="logo-box">
+            <h1 class="brand">Herboristería Fina</h1>
+            <div class="tagline">A GRANEL · DÉNIA</div>
+        </div>
     </header>
 
     <div class="container">
         <section class="hero">
-            <h1>Salud natural en cada gramo</h1>
-            <p>Descubre nuestra cuidada selección de plantas medicinales, especias puras y productos artesanos. Sin prisas, sin plásticos, solo lo mejor de la tierra.</p>
+            <h1>Bienestar natural directo a tu hogar.</h1>
+            <p>Especialistas en plantas medicinales, tés del mundo y especias de alta calidad. Sin intermediarios, sin plástico.</p>
         </section>
 
-        <main class="catalog-grid">
-            <div class="cat-box">
-                <h2>Alimentación</h2>
+        <main class="catalog">
+            <div class="card">
+                <h2>Cuerpo</h2>
                 <ul>
-                    <li>Especias y Condimentos</li>
-                    <li>Tés e Infusiones</li>
-                    <li>Miel Artesanal</li>
-                    <li>Legumbres y Frutos Secos</li>
+                    <li>Plantas a granel</li>
+                    <li>Aceites esenciales</li>
+                    <li>Cosmética sólida</li>
+                    <li>Higiene natural</li>
                 </ul>
             </div>
-            <div class="cat-box">
-                <h2>Bienestar</h2>
+            <div class="card">
+                <h2>Alma</h2>
                 <ul>
-                    <li>Plantas Medicinales</li>
-                    <li>Aceites Esenciales</li>
-                    <li>Cosmética Sólida</li>
-                    <li>Inciensos Naturales</li>
+                    <li>Tés e Infusiones</li>
+                    <li>Inciensos puros</li>
+                    <li>Miel de Dénia</li>
+                    <li>Velas artesanas</li>
                 </ul>
             </div>
         </main>
     </div>
 
-    <section class="info-section">
+    <section class="info-panel">
         <div class="container">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem;">¿Dónde encontrarnos?</h2>
-            <p>Carrer de Vicent Andrés Estellés, Dénia, Alicante</p>
-            <p><strong>Horario:</strong> L-V: 10-14h y 17-20h | S: 10-14h</p>
+            <h2>Visítanos o haz tu pedido</h2>
             
-            <a href="https://www.google.com/maps/search/?api=1&query=Herboristería+Fina+Dénia" target="_blank" class="map-link">Ver en Google Maps</a>
-            
-            <br>
-            
-            <a href="https://wa.me/34000000000" class="wa-btn">Hacer pedido por WhatsApp</a>
+            <div class="grid-info">
+                <div class="info-item">
+                    <h4>Ubicación</h4>
+                    <p>Carrer de Vicent Andrés Estellés, Dénia</p>
+                </div>
+                <div class="info-item">
+                    <h4>Horario</h4>
+                    <p>Lunes a Viernes: 10:00 - 20:00<br>Sábados: 10:00 - 14:00</p>
+                </div>
+            </div>
+
+            <a href="https://wa.me/34000000000" class="wa-button">
+                Hablar por WhatsApp
+            </a>
+
+            <p style="margin-top: 60px; opacity: 0.5; font-size: 0.8rem;">
+                © 2026 HERBORISTERÍA FINA A GRANEL - GRAN-1T
+            </p>
         </div>
     </section>
-
-    <footer>
-        &copy; 2026 Herboristería Fina a Granel Dénia. Hecho con ❤️ por la tierra.
-    </footer>
 
 </body>
 </html>
