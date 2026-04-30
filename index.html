@@ -9,8 +9,9 @@
         :root {
             --primary: #2d3e2d; 
             --accent: #b08d57;  
-            --glass: rgba(255, 255, 255, 0.4);
-            --sand-light: rgba(245, 240, 230, 0.6);
+            /* Делаем стекло еще прозрачнее */
+            --glass: rgba(255, 255, 255, 0.25);
+            --sand-footer: rgba(240, 230, 210, 0.5);
         }
 
         * { box-sizing: border-box; }
@@ -21,78 +22,80 @@
             color: var(--primary);
             min-height: 100vh;
             background: url('bg.jpg') repeat;
-            background-size: 450px;
+            background-size: 500px; /* Размер паттерна */
             background-attachment: fixed;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        /* Тонкая дымка на весь экран, сквозь которую ВИДНО паттерн */
+        /* Едва заметная дымка, чтобы картинка ГУЛЯЛА на фоне */
         .page-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            backdrop-filter: blur(8px); /* Уменьшили размытие */
-            -webkit-backdrop-filter: blur(8px);
-            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(2px); /* Почти убрали размытие */
+            -webkit-backdrop-filter: blur(2px);
+            background: rgba(255, 255, 255, 0.1); /* Прозрачная вуаль */
             z-index: -1;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 0 40px;
         }
 
+        /* Добавляем много воздуха в шапку */
         header {
-            padding: 100px 0 80px;
+            padding: 160px 0 120px; /* Огромные отступы сверху и снизу */
             text-align: center;
         }
 
         .brand-name {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 7vw, 3.8rem);
+            font-size: clamp(2.5rem, 8vw, 4.2rem);
             font-weight: 500;
-            letter-spacing: 3px;
+            letter-spacing: 5px;
             text-transform: uppercase;
+            margin: 0;
         }
 
         .tagline {
-            font-size: 0.9rem;
-            letter-spacing: 7px;
-            opacity: 0.6;
-            margin-top: 15px;
+            font-size: 1rem;
+            letter-spacing: 10px;
+            opacity: 0.7;
+            margin-top: 30px;
             font-weight: 600;
         }
 
-        /* Легкие воздушные карточки */
+        /* Сетка с большими промежутками */
         .catalog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
-            margin-bottom: 100px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 80px; /* Увеличили расстояние между блоками */
+            margin-bottom: 180px; /* Отступ до футера */
         }
 
         .glass-card {
             background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 50px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 70px 50px; /* Больше внутренних отступов */
+            border-radius: 2px; /* Почти острые углы для стиля */
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.5s ease;
         }
 
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.5);
-            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.4);
+            border-color: var(--accent);
         }
 
         .glass-card h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-style: italic;
-            margin: 0 0 30px 0;
+            margin: 0 0 40px 0;
             font-weight: 500;
+            color: var(--primary);
         }
 
         .glass-card ul {
@@ -101,63 +104,66 @@
         }
 
         .glass-card li {
-            font-size: 1.15rem;
-            margin-bottom: 18px;
+            font-size: 1.25rem;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
-            opacity: 0.85;
+            font-weight: 300;
         }
 
         .glass-card li::before {
             content: "";
-            width: 25px;
+            width: 40px;
             height: 1px;
             background: var(--accent);
-            margin-right: 15px;
+            margin-right: 20px;
         }
 
-        /* Песочный подвал стал нежнее */
+        /* Футер в песочных тонах, очень прозрачный */
         .footer-area {
-            padding: 120px 0;
-            background: var(--sand-light);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            padding: 150px 0;
+            background: var(--sand-footer);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.3);
+            border-top: 1px solid rgba(176, 141, 87, 0.2);
         }
 
         .footer-area h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 15px;
+            font-size: 2.4rem;
+            margin-bottom: 25px;
         }
 
         .btn {
             display: inline-block;
-            border: 1px solid var(--primary);
-            padding: 18px 40px;
+            border: 1.5px solid var(--primary);
+            padding: 22px 50px;
             text-decoration: none;
             color: var(--primary);
-            font-size: 0.9rem;
-            letter-spacing: 2px;
+            font-size: 1rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            margin-top: 30px;
+            margin-top: 50px;
             transition: all 0.3s;
         }
 
         .btn:hover {
             background: var(--primary);
             color: #fff;
+            letter-spacing: 5px;
         }
 
-        @media (max-width: 600px) {
-            header { padding: 60px 0; }
-            .glass-card { padding: 35px; }
+        @media (max-width: 768px) {
+            header { padding: 100px 0 60px; }
+            .catalog-grid { gap: 40px; }
+            .glass-card { padding: 40px 30px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Слой с минимальным размытием -->
     <div class="page-overlay"></div>
 
     <header class="container">
@@ -191,13 +197,13 @@
     <footer class="footer-area">
         <div class="container">
             <h3>Ven a vernos</h3>
-            <p>Carrer de Vicent Andrés Estellés, Dénia</p>
-            <p>L-V: 10:00 - 14:00, 17:00 - 20:00 | S: 10:00 - 14:00</p>
+            <p style="font-size: 1.2rem; margin-bottom: 10px;">Carrer de Vicent Andrés Estellés, Dénia</p>
+            <p style="opacity: 0.8;">L-V: 10:00 - 14:00, 17:00 - 20:00 | S: 10:00 - 14:00</p>
             
-            <a href="https://wa.me/34000000000" class="btn">Contactar por WhatsApp</a>
+            <a href="https://wa.me/34000000000" class="btn">WhatsApp Pedidos</a>
             
-            <p style="margin-top: 60px; opacity: 0.4; font-size: 0.8rem; letter-spacing: 1px;">
-                © 2026 HERBORISTERÍA FINA
+            <p style="margin-top: 100px; opacity: 0.3; font-size: 0.9rem; letter-spacing: 2px;">
+                © 2026 HERBORISTERÍA FINA A GRANEL
             </p>
         </div>
     </footer>
