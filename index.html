@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herboristería Fina | Dénia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Herboristería Fina | Boutique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@200;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2d3e2d; 
-            --accent: #b08d57;  
-            /* Делаем стекло еще прозрачнее */
-            --glass: rgba(255, 255, 255, 0.25);
-            --sand-footer: rgba(240, 230, 210, 0.5);
+            --dark: #1e2b1e;
+            --accent: #a68966;
+            --bg-overlay: rgba(255, 255, 255, 0.15);
         }
 
         * { box-sizing: border-box; }
@@ -19,161 +17,163 @@
         body {
             margin: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--primary);
-            min-height: 100vh;
+            color: var(--dark);
             background: url('bg.jpg') repeat;
-            background-size: 500px; /* Размер паттерна */
+            background-size: 600px;
             background-attachment: fixed;
-            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Едва заметная дымка, чтобы картинка ГУЛЯЛА на фоне */
-        .page-overlay {
+        /* Виньетка: делает края чуть темнее, а центр светлее - это убирает "грязь" */
+        .viewport-frame {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            backdrop-filter: blur(2px); /* Почти убрали размытие */
-            -webkit-backdrop-filter: blur(2px);
-            background: rgba(255, 255, 255, 0.1); /* Прозрачная вуаль */
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.5) 100%);
             z-index: -1;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 40px;
         }
 
-        /* Добавляем много воздуха в шапку */
+        /* Чистая, высокая шапка */
         header {
-            padding: 160px 0 120px; /* Огромные отступы сверху и снизу */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
         }
 
         .brand-name {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 4.2rem);
-            font-weight: 500;
-            letter-spacing: 5px;
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-weight: 400;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            margin: 0;
+            margin-bottom: 20px;
         }
 
         .tagline {
-            font-size: 1rem;
-            letter-spacing: 10px;
-            opacity: 0.7;
-            margin-top: 30px;
-            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8em;
+            color: var(--accent);
+            margin-left: 0.8em; /* компенсация для центровки */
         }
 
-        /* Сетка с большими промежутками */
+        /* Сетка без границ */
+        .content-section {
+            padding: 100px 0 200px;
+        }
+
         .catalog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 80px; /* Увеличили расстояние между блоками */
-            margin-bottom: 180px; /* Отступ до футера */
+            grid-template-columns: 1fr 1fr;
+            gap: 120px;
         }
 
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            padding: 70px 50px; /* Больше внутренних отступов */
-            border-radius: 2px; /* Почти острые углы для стиля */
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            transition: all 0.5s ease;
+        .category-block {
+            padding: 40px;
         }
 
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.4);
-            border-color: var(--accent);
-        }
-
-        .glass-card h2 {
+        .category-block h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 3.2rem;
             font-style: italic;
-            margin: 0 0 40px 0;
-            font-weight: 500;
-            color: var(--primary);
+            font-weight: 400;
+            margin-bottom: 50px;
+            position: relative;
         }
 
-        .glass-card ul {
+        .category-block ul {
             list-style: none;
             padding: 0;
         }
 
-        .glass-card li {
-            font-size: 1.25rem;
-            margin-bottom: 25px;
+        .category-block li {
+            font-size: 1.1rem;
+            font-weight: 200;
+            margin-bottom: 30px;
+            letter-spacing: 0.05em;
             display: flex;
             align-items: center;
-            font-weight: 300;
+            opacity: 0.8;
         }
 
-        .glass-card li::before {
+        /* Элегантный разделитель вместо буллита */
+        .category-block li::before {
             content: "";
-            width: 40px;
+            width: 50px;
             height: 1px;
             background: var(--accent);
-            margin-right: 20px;
-        }
-
-        /* Футер в песочных тонах, очень прозрачный */
-        .footer-area {
-            padding: 150px 0;
-            background: var(--sand-footer);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            text-align: center;
-            border-top: 1px solid rgba(176, 141, 87, 0.2);
-        }
-
-        .footer-area h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.4rem;
-            margin-bottom: 25px;
-        }
-
-        .btn {
+            margin-right: 25px;
             display: inline-block;
-            border: 1.5px solid var(--primary);
-            padding: 22px 50px;
+        }
+
+        /* Футер как отдельный арт-объект */
+        footer {
+            background: rgba(245, 242, 235, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            padding: 150px 0;
+            text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        footer h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+
+        .contact-info {
+            font-size: 1.2rem;
+            font-weight: 200;
+            margin-bottom: 60px;
+            line-height: 2;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            padding: 20px 50px;
+            border: 1px solid var(--dark);
             text-decoration: none;
-            color: var(--primary);
-            font-size: 1rem;
-            letter-spacing: 3px;
+            color: var(--dark);
+            font-size: 0.8rem;
+            letter-spacing: 0.4em;
             text-transform: uppercase;
-            margin-top: 50px;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .btn:hover {
-            background: var(--primary);
-            color: #fff;
-            letter-spacing: 5px;
+        .shop-btn:hover {
+            background: var(--dark);
+            color: white;
+            padding: 20px 70px;
         }
 
-        @media (max-width: 768px) {
-            header { padding: 100px 0 60px; }
-            .catalog-grid { gap: 40px; }
-            .glass-card { padding: 40px 30px; }
+        @media (max-width: 900px) {
+            .catalog-grid { grid-template-columns: 1fr; gap: 60px; }
+            header { height: auto; padding: 150px 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Слой с минимальным размытием -->
-    <div class="page-overlay"></div>
+    <div class="viewport-frame"></div>
 
     <header class="container">
         <h1 class="brand-name">Herboristería Fina</h1>
-        <div class="tagline">A GRANEL · DÉNIA</div>
+        <div class="tagline">A Granel · Dénia</div>
     </header>
 
-    <main class="container">
+    <main class="container content-section">
         <div class="catalog-grid">
-            <div class="glass-card">
+            <div class="category-block">
                 <h2>Cuerpo</h2>
                 <ul>
                     <li>Plantas medicinales</li>
@@ -182,7 +182,7 @@
                     <li>Miel artesana</li>
                 </ul>
             </div>
-            <div class="glass-card">
+            <div class="category-block">
                 <h2>Alma</h2>
                 <ul>
                     <li>Aceites esenciales</li>
@@ -194,17 +194,14 @@
         </div>
     </main>
 
-    <footer class="footer-area">
+    <footer>
         <div class="container">
-            <h3>Ven a vernos</h3>
-            <p style="font-size: 1.2rem; margin-bottom: 10px;">Carrer de Vicent Andrés Estellés, Dénia</p>
-            <p style="opacity: 0.8;">L-V: 10:00 - 14:00, 17:00 - 20:00 | S: 10:00 - 14:00</p>
-            
-            <a href="https://wa.me/34000000000" class="btn">WhatsApp Pedidos</a>
-            
-            <p style="margin-top: 100px; opacity: 0.3; font-size: 0.9rem; letter-spacing: 2px;">
-                © 2026 HERBORISTERÍA FINA A GRANEL
-            </p>
+            <h3>Visítanos</h3>
+            <div class="contact-info">
+                Carrer de Vicent Andrés Estellés, Dénia<br>
+                L—V: 10:00 - 14:00, 17:00 - 20:00
+            </div>
+            <a href="#" class="shop-btn">Contactar</a>
         </div>
     </footer>
 
