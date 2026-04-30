@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herboristería Fina | Boutique</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@200;400&display=swap" rel="stylesheet">
+    <title>Herboristería Fina | Dénia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@500;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark: #1e2b1e;
-            --accent: #a68966;
-            --bg-overlay: rgba(255, 255, 255, 0.15);
+            --dark: #0f1a0f;
+            --accent: #8b7355;
+            /* Плотное матовое стекло */
+            --glass-sheet: rgba(255, 255, 255, 0.85); 
         }
 
         * { box-sizing: border-box; }
@@ -18,192 +19,171 @@
             margin: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
             color: var(--dark);
+            /* Паттерн на фоне */
             background: url('bg.jpg') repeat;
-            background-size: 600px;
+            background-size: 400px;
             background-attachment: fixed;
-            -webkit-font-smoothing: antialiased;
         }
 
-        /* Виньетка: делает края чуть темнее, а центр светлее - это убирает "грязь" */
-        .viewport-frame {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.5) 100%);
-            z-index: -1;
+        /* Плотная матовая подложка на ВЕСЬ контент, чтобы скрыть лишнее */
+        .main-wrapper {
+            background: var(--glass-sheet);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            min-height: 100vh;
+            width: 100%;
+            padding: 60px 0;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 30px;
         }
 
-        /* Чистая, высокая шапка */
         header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             text-align: center;
+            margin-bottom: 80px;
         }
 
         .brand-name {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 10vw, 5.5rem);
-            font-weight: 400;
-            letter-spacing: 0.15em;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             text-transform: uppercase;
-            margin-bottom: 20px;
+            letter-spacing: -1px; /* Плотный заголовок выглядит современнее */
+            margin: 0;
         }
 
         .tagline {
-            font-size: 0.85rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            letter-spacing: 0.8em;
+            letter-spacing: 6px;
+            font-weight: 800;
             color: var(--accent);
-            margin-left: 0.8em; /* компенсация для центровки */
+            margin-top: 10px;
         }
 
-        /* Сетка без границ */
-        .content-section {
-            padding: 100px 0 200px;
-        }
-
+        /* Крупная, четкая сетка */
         .catalog-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 120px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
 
-        .category-block {
-            padding: 40px;
+        .card {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 50px;
+            border-radius: 20px;
+            border: 2px solid #fff;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
         }
 
-        .category-block h2 {
+        .card h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.2rem;
-            font-style: italic;
-            font-weight: 400;
-            margin-bottom: 50px;
-            position: relative;
+            font-size: 2.8rem;
+            margin: 0 0 30px 0;
         }
 
-        .category-block ul {
+        .card ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
-        .category-block li {
-            font-size: 1.1rem;
-            font-weight: 200;
-            margin-bottom: 30px;
-            letter-spacing: 0.05em;
+        .card li {
+            font-size: 1.4rem; /* Крупный текст */
+            font-weight: 500;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            opacity: 0.8;
         }
 
-        /* Элегантный разделитель вместо буллита */
-        .category-block li::before {
+        .card li::before {
             content: "";
-            width: 50px;
-            height: 1px;
+            width: 12px;
+            height: 12px;
             background: var(--accent);
-            margin-right: 25px;
-            display: inline-block;
+            border-radius: 50%;
+            margin-right: 15px;
+            flex-shrink: 0;
         }
 
-        /* Футер как отдельный арт-объект */
+        /* Подвал в песочном цвете */
         footer {
-            background: rgba(245, 242, 235, 0.7);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            padding: 150px 0;
+            margin-top: 100px;
+            background: rgba(230, 220, 200, 0.9);
+            padding: 80px 0;
             text-align: center;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            border-radius: 40px 40px 0 0;
         }
 
         footer h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 400;
-            margin-bottom: 40px;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
         }
 
-        .contact-info {
-            font-size: 1.2rem;
-            font-weight: 200;
-            margin-bottom: 60px;
-            line-height: 2;
-        }
-
-        .shop-btn {
+        .btn {
             display: inline-block;
-            padding: 20px 50px;
-            border: 1px solid var(--dark);
-            text-decoration: none;
-            color: var(--dark);
-            font-size: 0.8rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .shop-btn:hover {
             background: var(--dark);
             color: white;
-            padding: 20px 70px;
+            padding: 22px 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 800;
+            border-radius: 100px;
+            margin-top: 30px;
+            transition: 0.3s;
         }
 
-        @media (max-width: 900px) {
-            .catalog-grid { grid-template-columns: 1fr; gap: 60px; }
-            header { height: auto; padding: 150px 0; }
+        .btn:hover {
+            transform: scale(1.05);
+            background: var(--accent);
+        }
+
+        @media (max-width: 600px) {
+            .brand-name { font-size: 3rem; }
+            .card { padding: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="viewport-frame"></div>
+    <div class="main-wrapper">
+        <header class="container">
+            <h1 class="brand-name">Herboristería Fina</h1>
+            <div class="tagline">A GRANEL • DÉNIA</div>
+        </header>
 
-    <header class="container">
-        <h1 class="brand-name">Herboristería Fina</h1>
-        <div class="tagline">A Granel · Dénia</div>
-    </header>
+        <main class="container">
+            <div class="catalog-grid">
+                <div class="card">
+                    <h2>Cuerpo</h2>
+                    <ul>
+                        <li>Plantas medicinales</li>
+                        <li>Esпеcias del mundo</li>
+                        <li>Tés e infusiones</li>
+                        <li>Miel artesana</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h2>Alma</h2>
+                    <ul>
+                        <li>Aceites esenciales</li>
+                        <li>Cosmética sólida</li>
+                        <li>Inciensos naturales</li>
+                        <li>Jabones vegetales</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
 
-    <main class="container content-section">
-        <div class="catalog-grid">
-            <div class="category-block">
-                <h2>Cuerpo</h2>
-                <ul>
-                    <li>Plantas medicinales</li>
-                    <li>Especias del mundo</li>
-                    <li>Tés e infusiones</li>
-                    <li>Miel artesana</li>
-                </ul>
-            </div>
-            <div class="category-block">
-                <h2>Alma</h2>
-                <ul>
-                    <li>Aceites esenciales</li>
-                    <li>Cosmética sólida</li>
-                    <li>Inciensos naturales</li>
-                    <li>Jabones vegetales</li>
-                </ul>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <h3>Visítanos</h3>
-            <div class="contact-info">
-                Carrer de Vicent Andrés Estellés, Dénia<br>
-                L—V: 10:00 - 14:00, 17:00 - 20:00
-            </div>
-            <a href="#" class="shop-btn">Contactar</a>
-        </div>
-    </footer>
+        <footer class="container">
+            <h3>Ven a visitarnos</h3>
+            <p style="font-size: 1.3rem;">Carrer de Vicent Andrés Estellés, Dénia</p>
+            <p>L-V: 10:00 - 14:00, 17:00 - 20:00</p>
+            <a href="#" class="btn">PEDIR POR WHATSAPP</a>
+        </footer>
+    </div>
 
 </body>
 </html>
